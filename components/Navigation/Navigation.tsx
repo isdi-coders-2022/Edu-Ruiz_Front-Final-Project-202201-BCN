@@ -19,7 +19,7 @@ const Navigation = (): JSX.Element => {
     <ContainerNav>
       <Link href="/my-anime">my Anime</Link>
       <Link href="/new-anime">new Anime</Link>
-      <Link href="/home" passHref>
+      <Link href="/" passHref>
         <a>
           <h1 className="title">Anime4me</h1>
         </a>
