@@ -15,13 +15,13 @@ const customJestConfig = {
   testEnvironment: "jest-environment-jsdom",
 
   collectCoverageFrom: [
-    "*/**/*.js",
+    "**/*.tsx",
     "!/*.config.js",
-    "!pages/_app.js",
+    "!pages/_app.tsx",
+    "!pages/index.tsx",
     "!coverage/**/*",
     "!.next/**/*",
-    "!**/*.test.js",
-    "!mocks/*.js",
+    "!**/*.test.tsx",
   ],
 };
 
