@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import Layout from "./Layout";
+import Layout from "../components/Layout/Layout";
 
 describe("Given a Layout component", () => {
   describe("When it's rendered with an anchor inside", () => {
