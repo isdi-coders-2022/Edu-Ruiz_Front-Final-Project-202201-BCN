@@ -22,6 +22,7 @@ const Menu = styled.div`
   }
 
   @media (min-width: 600px) {
+    display: none;
     & .floating {
       color: white;
       display: none;
