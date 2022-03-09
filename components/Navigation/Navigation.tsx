@@ -1,5 +1,8 @@
 import Link from "next/link";
+import { useState } from "react";
 import styled from "styled-components";
+import Burguer from "../Burguer/Burguer";
+import FloatingMenu from "../FloatingMenu/FloatingMenu";
 
 const ContainerNav = styled.section`
   background-color: #ff006b;
@@ -8,24 +11,58 @@ const ContainerNav = styled.section`
   justify-content: space-around;
   align-items: center;
 
-  & a {
+  & .navigation {
     font-size: 18px;
     font-family: "Readex Pro";
+  }
+
+  & .title {
+    font-family: "Readex Pro";
+  }
+
+  @media (max-width: 600px) {
+    & .navigation {
+      display: none;
+    }
   }
 `;
 
 const Navigation = (): JSX.Element => {
+  const [isActive, setIsActive] = useState<boolean>(false);
+
+  const toggleActive = () => {
+    setIsActive(isActive ? false : true);
+  };
+
   return (
     <ContainerNav>
-      <Link href="/my-anime">my Anime</Link>
-      <Link href="/new-anime">new Anime</Link>
+      <Link href="/my-anime">
+        <a>
+          <p className="navigation">my Anime</p>
+        </a>
+      </Link>
+      <Link href="/new-anime">
+        <a>
+          <p className="navigation">new Anime</p>
+        </a>
+      </Link>
       <Link href="/" passHref>
         <a>
           <h1 className="title">Anime4me</h1>
         </a>
       </Link>
-      <Link href="/profile">profile</Link>
-      <Link href="/login">sign out</Link>
+      <Link href="/profile">
+        <a>
+          <p className="navigation">profile</p>
+        </a>
+      </Link>
+      <Link href="/login">
+        <a>
+          <p className="navigation">sign out</p>
+        </a>
+      </Link>
+      <FloatingMenu isActive={isActive} />
+      <Burguer actionOnClick={toggleActive} isActive={isActive} />
     </ContainerNav>
   );
 };
