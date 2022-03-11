@@ -7,19 +7,10 @@ import { RootState } from "../../redux/store";
 import { loadAnimeListThunk } from "../../redux/thunks/animeThunks";
 
 const ContainerAnime = styled.div`
-  height: 260px;
-  min-height: 260px;
   margin: 10px;
-  width: 180px;
-  min-width: 180px;
-  background-color: #ff006a;
 
   @media (max-width: 600px) {
-    height: 150px;
-    min-height: 150px;
     margin: 10px;
-    width: 100px;
-    min-width: 100px;
   }
 `;
 
