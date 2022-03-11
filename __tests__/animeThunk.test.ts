@@ -8,6 +8,7 @@ describe("Given a loadAnimeListThunk", () => {
     test("Then it should call the dispatch function", async () => {
       const animes: Animes = [
         {
+          id: "99",
           autor: "tupac",
           image: "image.png",
           name: "naruto",
