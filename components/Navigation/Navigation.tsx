@@ -5,6 +5,10 @@ import Burguer from "../Burguer/Burguer";
 import FloatingMenu from "../FloatingMenu/FloatingMenu";
 
 const ContainerNav = styled.section`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
   background-color: #ff006b;
   height: 60px;
   display: flex;
