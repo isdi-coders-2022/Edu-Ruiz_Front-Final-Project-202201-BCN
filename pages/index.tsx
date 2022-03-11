@@ -6,8 +6,9 @@ const ContainerMain = styled.section`
   margin-top: 60px;
   padding: 10px;
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
-  background-color: #000;
+  background-color: #1a0e17;
 `;
 
 const Home = (): JSX.Element => {

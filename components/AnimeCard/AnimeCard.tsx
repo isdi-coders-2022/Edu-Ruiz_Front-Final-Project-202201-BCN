@@ -7,6 +7,7 @@ const AnimeCardStyle = styled.section`
   transition: 0.2s;
 
   & .images {
+    border-radius: 5px;
     height: 250px;
     min-height: 250px;
     width: 180px;
@@ -24,6 +25,7 @@ const AnimeCardStyle = styled.section`
     padding: 2px;
     align-items: center;
     justify-content: center;
+    box-shadow: 3px 3px 6px 0px #000;
     & .autor {
       padding: 10px;
       display: block;

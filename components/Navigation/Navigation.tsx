@@ -14,6 +14,7 @@ const ContainerNav = styled.section`
   display: flex;
   justify-content: space-around;
   align-items: center;
+  box-shadow: 0px 2px 3px 0px #000;
 
   & .navigation {
     font-size: 18px;
