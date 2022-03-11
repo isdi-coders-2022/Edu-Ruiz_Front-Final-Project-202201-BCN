@@ -7,6 +7,7 @@ export const handlers = [
       ctx.json({
         animes: [
           {
+            id: "99",
             autor: "tupac",
             image: "image.png",
             name: "naruto",
