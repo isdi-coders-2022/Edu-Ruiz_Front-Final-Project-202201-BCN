@@ -16,12 +16,22 @@ const customJestConfig = {
 
   collectCoverageFrom: [
     "**/*.tsx",
+    "**/*.ts",
     "!/*.config.js",
     "!pages/_app.tsx",
     "!pages/index.tsx",
+
+    "!pages/login.tsx",
+    "!pages/my-anime.tsx",
+    "!pages/new-anime.tsx",
+    "!pages/profile.tsx",
+
+    "!redux/**/index.ts",
     "!coverage/**/*",
     "!.next/**/*",
     "!**/*.test.tsx",
+    "!setupTests.ts",
+    "!mocks/*.ts",
   ],
 };
 
