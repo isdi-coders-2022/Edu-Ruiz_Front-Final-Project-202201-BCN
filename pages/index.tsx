@@ -2,7 +2,7 @@ import styled from "styled-components";
 import AnimeList from "../components/AnimeList/AnimeList";
 
 const ContainerMain = styled.section`
-  min-height: 92.2vh;
+  min-height: 100vh;
   margin-top: 60px;
   padding: 10px;
   display: flex;

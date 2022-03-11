@@ -20,13 +20,30 @@ const ContImg = styled.section`
   }
 `;
 
+const AnimeCardStyle = styled.section`
+  & .autor {
+    display: none;
+  }
+
+  :hover {
+    background-color: #ff006a;
+    & .autor {
+      display: block;
+      color: #fff;
+      font-family: "Readex Pro";
+    }
+  }
+`;
+
 const AnimeCard = ({ autor, name, image }: Anime): JSX.Element => {
   return (
     <>
-      <ContImg>
-        <img className="images" src={image} alt={name} />
-      </ContImg>
-      <p>{autor}</p>
+      <AnimeCardStyle>
+        <ContImg>
+          <img className="images" src={image} alt={name} />
+        </ContImg>
+        <p className="autor">{autor}</p>
+      </AnimeCardStyle>
     </>
   );
 };
