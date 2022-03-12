@@ -19,6 +19,28 @@ const ContainerNav = styled.section`
   & .navigation {
     font-size: 18px;
     font-family: "Readex Pro";
+    text-decoration: underline #0000;
+    transition: 0.2s;
+    display: inline-block;
+    position: relative;
+  }
+
+  & .navigation:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #fff;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+  }
+
+  & .navigation:hover:after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
   }
 
   & .title {
