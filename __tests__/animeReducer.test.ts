@@ -1,5 +1,6 @@
 import { Animes } from "../interfaces/AnimeProps";
 import TypeOfAction from "../interfaces/TypeOfAction";
+import { deleteAnimeAction } from "../redux/actions/actionsCreator";
 import actionsTypes from "../redux/actions/actionsTypes";
 import animeReducer from "../redux/reducer/animeReducer";
 
@@ -75,5 +76,27 @@ describe("Given a cryptoReducer function", () => {
 
       expect(newProjects).toHaveLength(0);
     });
+  });
+});
+
+describe("When it gets 2 reviews and use deleteReviewAction with id 2", () => {
+  test("Then it should delete it and not to fain in reviews", () => {
+    const animes = [
+      {
+        id: "2",
+        autor: "tupac",
+        image: "image.png",
+        name: "naruto",
+      },
+    ];
+    const idToDelete = "2";
+    const expectedLength = 0;
+    const expectedRemovedReview = { id: "2" };
+    const action = deleteAnimeAction(idToDelete);
+
+    const newReviews = animeReducer(animes, action);
+
+    expect(newReviews).not.toContain(expectedRemovedReview);
+    expect(newReviews).toHaveLength(expectedLength);
   });
 });

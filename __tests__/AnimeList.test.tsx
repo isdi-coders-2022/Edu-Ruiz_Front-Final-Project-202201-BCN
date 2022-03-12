@@ -1,8 +1,8 @@
+import "whatwg-fetch";
 import { render, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
 import AnimeList from "../components/AnimeList/AnimeList";
 import store from "../redux/store";
-import "whatwg-fetch";
 
 describe("Given a AnimeCard component", () => {
   describe("When it's rendered component", () => {
@@ -13,9 +13,9 @@ describe("Given a AnimeCard component", () => {
         </Provider>
       );
 
-      const text = await screen.findByText("tupac");
+      const test = await screen.findAllByText("tupac");
 
-      expect(text).toBeInTheDocument();
+      expect(test[0]).toBeInTheDocument();
     });
   });
 });
