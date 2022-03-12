@@ -39,6 +39,7 @@ const AnimeList = (): JSX.Element => {
       {animesList.map((anime: Anime) => (
         <ContainerAnime key={anime.id}>
           <AnimeCard
+            id={anime.id}
             autor={anime.autor}
             name={anime.name}
             image={anime.image}

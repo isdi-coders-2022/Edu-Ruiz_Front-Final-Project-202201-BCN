@@ -1,10 +1,14 @@
 /* eslint-disable @next/next/no-img-element */
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import Anime from "../../interfaces/Anime";
+import { deleteAnimeThunk } from "../../redux/thunks/animeThunks";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const AnimeCardStyle = styled.section`
   border-radius: 5px;
-  transition: 0.2s;
+  transition: 0.3s;
 
   & .images {
     border-radius: 5px;
@@ -18,6 +22,10 @@ const AnimeCardStyle = styled.section`
     display: none;
   }
 
+  & .buttonX {
+    display: none;
+  }
+
   :hover {
     background-color: #ff006b;
     display: flex;
@@ -26,15 +34,47 @@ const AnimeCardStyle = styled.section`
     align-items: center;
     justify-content: center;
     box-shadow: 3px 3px 6px 0px #000;
-    & .autor {
-      padding: 10px;
-      display: block;
-      color: #fff;
-      font-family: "Readex Pro";
-    }
 
     & .images {
       border-radius: 5px;
+    }
+    & section {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      & .autor {
+        padding-left: 10px;
+        display: block;
+        color: #fff;
+        font-family: "Readex Pro";
+      }
+
+      & .line {
+        background-color: #fff;
+        width: 2px;
+        height: 40px;
+        margin: 10px;
+      }
+
+      & .buttonX {
+        display: block;
+        color: #fff;
+        font-family: "Readex Pro";
+        padding: 5px;
+        background: none;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      & .buttonX:hover {
+        background-color: #0006;
+        color: #fff;
+      }
+
+      & .buttonX:active {
+        background-color: #0008;
+      }
     }
   }
 
@@ -64,12 +104,45 @@ const AnimeCardStyle = styled.section`
   }
 `;
 
-const AnimeCard = ({ autor, name, image }: Anime): JSX.Element => {
+const AnimeCard = ({ id, autor, name, image }: Anime): JSX.Element => {
+  const dispatch = useDispatch();
+
+  const deleteAnime = (id: string) => {
+    toast(`${name} 🔥 is deleted`, {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: false,
+      draggable: true,
+      progress: undefined,
+    });
+    dispatch(deleteAnimeThunk(id));
+  };
+
   return (
     <>
       <AnimeCardStyle>
         <img className="images" src={image} alt={name} />
-        <p className="autor">{autor}</p>
+        <section>
+          <p className="autor">{autor}</p>
+          <span className="line"></span>
+          <button onClick={() => deleteAnime(id as string)} className="buttonX">
+            delete
+          </button>
+          <ToastContainer
+            position="top-right"
+            autoClose={3000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick={false}
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover={false}
+            theme={"dark"}
+          />
+        </section>
       </AnimeCardStyle>
     </>
   );
