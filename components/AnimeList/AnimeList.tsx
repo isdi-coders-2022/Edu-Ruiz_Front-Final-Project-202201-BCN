@@ -8,8 +8,8 @@ import { loadAnimeListThunk } from "../../redux/thunks/animeThunks";
 
 const ContainerAnime = styled.div`
   margin: 10px;
-  height: 294px;
-  min-height: 294px;
+  height: 299px;
+  min-height: 299px;
   width: 184px;
   display: flex;
   justify-content: center;

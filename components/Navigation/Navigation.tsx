@@ -45,6 +45,26 @@ const ContainerNav = styled.section`
 
   & .title {
     font-family: "Readex Pro";
+    display: inline-block;
+    position: relative;
+  }
+
+  & .title:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #fff;
+    transform-origin: bottom;
+    transition: transform 0.3s ease-out;
+  }
+
+  & .title:hover:after {
+    transform: scaleX(1);
+    transform-origin: bottom center;
   }
 
   @media (max-width: 600px) {
