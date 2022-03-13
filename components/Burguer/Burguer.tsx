@@ -1,5 +1,4 @@
-import { MockedComponentClass } from "react-dom/test-utils";
-import styled, { StyledComponent } from "styled-components";
+import styled from "styled-components";
 
 const burgerHeight = 31;
 

@@ -5,6 +5,8 @@ import Anime from "../../interfaces/Anime";
 import { deleteAnimeThunk } from "../../redux/thunks/animeThunks";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faPencil, faTrash } from "@fortawesome/free-solid-svg-icons";
 
 const AnimeCardStyle = styled.section`
   border-radius: 5px;
@@ -22,7 +24,7 @@ const AnimeCardStyle = styled.section`
     display: none;
   }
 
-  & .buttonX {
+  & .buttons {
     display: none;
   }
 
@@ -32,47 +34,48 @@ const AnimeCardStyle = styled.section`
     flex-direction: column;
     padding: 2px;
     align-items: center;
-    justify-content: center;
+
     box-shadow: 3px 3px 6px 0px #000;
 
     & .images {
       border-radius: 5px;
     }
+
     & section {
       display: flex;
-      justify-content: center;
       align-items: center;
 
       & .autor {
-        padding-left: 10px;
+        padding-left: 5px;
         display: block;
         color: #fff;
+        font-size: 14px;
         font-family: "Readex Pro";
       }
 
       & .line {
         background-color: #fff;
         width: 2px;
-        height: 40px;
+        height: 30px;
         margin: 10px;
       }
 
-      & .buttonX {
+      & .buttons {
         display: block;
         color: #fff;
-        font-family: "Readex Pro";
+        font-family: monospace;
         padding: 5px;
         background: none;
         border: none;
         border-radius: 5px;
         cursor: pointer;
       }
-      & .buttonX:hover {
+      & .buttons:hover {
         background-color: #0006;
         color: #fff;
       }
 
-      & .buttonX:active {
+      & .buttons:active {
         background-color: #0008;
       }
     }
@@ -108,7 +111,7 @@ const AnimeCard = ({ id, autor, name, image }: Anime): JSX.Element => {
   const dispatch = useDispatch();
 
   const deleteAnime = (id: string) => {
-    toast(`${name} 🔥 is deleted`, {
+    toast(`${name} is deleted 💀`, {
       position: "top-right",
       autoClose: 3000,
       hideProgressBar: false,
@@ -125,10 +128,10 @@ const AnimeCard = ({ id, autor, name, image }: Anime): JSX.Element => {
       <AnimeCardStyle>
         <img className="images" src={image} alt={name} />
         <section>
-          <p className="autor">{autor}</p>
+          <p className="autor">{name}</p>
           <span className="line"></span>
-          <button onClick={() => deleteAnime(id as string)} className="buttonX">
-            delete
+          <button onClick={() => deleteAnime(id as string)} className="buttons">
+            <FontAwesomeIcon icon={faTrash} />
           </button>
           <ToastContainer
             position="top-right"
