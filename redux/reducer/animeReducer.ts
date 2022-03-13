@@ -18,6 +18,10 @@ const animeReducer = (animeList: Animes = [], action: AnyAction) => {
         (anime) => anime.id !== (action as TypeOfAction).payload
       );
       break;
+    case actionsTypes.createAnime:
+      newAnime = [...animeList, action.newAnime];
+
+      break;
     default:
       newAnime = [...animeList];
   }

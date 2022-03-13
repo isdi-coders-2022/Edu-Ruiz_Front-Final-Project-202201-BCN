@@ -11,3 +11,8 @@ export const deleteAnimeAction = (id: string): TypeOfAction => ({
   type: actionsTypes.deleteAnime,
   payload: id,
 });
+
+export const createAnimeAction = (newAnime: Object) => ({
+  type: actionsTypes.createAnime,
+  newAnime,
+});
