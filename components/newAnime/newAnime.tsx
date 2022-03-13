@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
-import Router from "next/router";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { toast, ToastContainer } from "react-toastify";
 import styled from "styled-components";
 import { createAnimeThunk } from "../../redux/thunks/animeThunks";
 
@@ -173,7 +173,6 @@ const NewAnime = (): JSX.Element => {
   const submitForm = (event: React.ChangeEvent<HTMLFormElement>) => {
     event.preventDefault();
     dispatch(createAnimeThunk(formData));
-    Router.push("/");
   };
 
   return (
@@ -244,6 +243,18 @@ const NewAnime = (): JSX.Element => {
           </li>
         </ul>
       </FormContainer>
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover={false}
+        theme={"dark"}
+      />
     </>
   );
 };
