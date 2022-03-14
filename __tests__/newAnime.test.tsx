@@ -34,22 +34,3 @@ describe("when its rendered", () => {
     userEvent.type(input, inputedText);
   });
 });
-
-describe("when its rendered", () => {
-  test("then it should be find the heading 'new review'", async () => {
-    const file: any = new File(["hello"], "hello.png", { type: "image/png" });
-
-    render(
-      <Provider store={store}>
-        <NewAnime />
-      </Provider>
-    );
-
-    const input: any = await screen.getByTitle("image-upload");
-    await userEvent.upload(input, file);
-
-    expect(input.files[0]).toStrictEqual(file);
-    expect(input.files.item(0)).toStrictEqual(file);
-    expect(input.files).toHaveLength(1);
-  });
-});
