@@ -1,6 +1,7 @@
 import actionsTypes from "../redux/actions/actionsTypes";
 import { AnimeProps, Animes } from "../interfaces/AnimeProps";
 import {
+  createAnimeAction,
   deleteAnimeAction,
   loadAnimesAction,
 } from "../redux/actions/actionsCreator";
@@ -40,6 +41,27 @@ describe("Given a deleteReviewAction action", () => {
 
       const action = deleteAnimeAction(id);
       expect(action).toEqual(expectedAction);
+    });
+  });
+});
+
+describe("Given a createAnimeAction action", () => {
+  describe("When its recives a action", () => {
+    test("Then it should return a newAnime", () => {
+      const newAnime: Object = {
+        autor: "tupac",
+        image: "image.png",
+        name: "naruto",
+      };
+
+      const action = {
+        type: actionsTypes.createAnime,
+        newAnime,
+      };
+
+      const expectedOutput = createAnimeAction(newAnime);
+
+      expect(expectedOutput).toEqual(action);
     });
   });
 });
