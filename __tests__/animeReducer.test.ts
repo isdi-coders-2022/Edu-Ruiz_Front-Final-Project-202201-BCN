@@ -1,6 +1,9 @@
 import { Animes } from "../interfaces/AnimeProps";
 import TypeOfAction from "../interfaces/TypeOfAction";
-import { deleteAnimeAction } from "../redux/actions/actionsCreator";
+import {
+  createAnimeAction,
+  deleteAnimeAction,
+} from "../redux/actions/actionsCreator";
 import actionsTypes from "../redux/actions/actionsTypes";
 import animeReducer from "../redux/reducer/animeReducer";
 
@@ -97,6 +100,33 @@ describe("When it gets 2 reviews and use deleteReviewAction with id 2", () => {
     const newReviews = animeReducer(animes, action);
 
     expect(newReviews).not.toContain(expectedRemovedReview);
+    expect(newReviews).toHaveLength(expectedLength);
+  });
+});
+
+describe("When it gets 2 reviews and use deleteReviewAction with id 2", () => {
+  test("Then it should delete it and not to fain in reviews", () => {
+    const animes = [
+      {
+        id: "2",
+        autor: "tupac",
+        image: "image.png",
+        name: "naruto",
+      },
+    ];
+
+    const expectedLength = 2;
+    const expectedNewAnime = {
+      id: "3",
+      autor: "tupac",
+      image: "image.png",
+      name: "naruto",
+    };
+    const action = createAnimeAction(expectedNewAnime);
+
+    const newReviews = animeReducer(animes, action);
+
+    expect(newReviews).toContain(expectedNewAnime);
     expect(newReviews).toHaveLength(expectedLength);
   });
 });

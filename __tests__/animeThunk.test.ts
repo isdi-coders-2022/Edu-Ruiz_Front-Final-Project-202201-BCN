@@ -1,4 +1,5 @@
 import {
+  createAnimeThunk,
   deleteAnimeThunk,
   loadAnimeListThunk,
 } from "../redux/thunks/animeThunks";
@@ -38,6 +39,25 @@ describe("Given a deletedArticleThunk function", () => {
       await deleteThunk(dispatch);
 
       expect(dispatch).not.toHaveBeenCalled();
+    });
+  });
+});
+
+describe("Given a createReviewThunk", () => {
+  describe("When its invoked with a singleReview", () => {
+    test("Then it should dispatch a function", async () => {
+      const dispatch = jest.fn();
+      const singleReview = {
+        id: "2",
+        autor: "tupac",
+        image: "image.png",
+        name: "naruto",
+      };
+      const createThunk = createAnimeThunk(singleReview);
+
+      await createThunk(dispatch);
+
+      expect(dispatch).toHaveBeenCalled();
     });
   });
 });
