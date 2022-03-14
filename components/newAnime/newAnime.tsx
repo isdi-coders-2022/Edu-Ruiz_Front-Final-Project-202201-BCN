@@ -34,6 +34,8 @@ const FormContainer = styled.form`
         }
 
         & .imageSize {
+          object-position: center;
+          object-fit: cover;
           height: 100px;
           width: 70px;
           border: 2px solid #000;
@@ -222,13 +224,14 @@ const NewAnime = (): JSX.Element => {
           <li>
             <label htmlFor="image">profile picture</label>
             <input
+              title="image-upload"
               className="custom-file-input"
               type="file"
               id="image"
               name="image"
               placeholder="img"
               required
-              accept=".png, .jpg"
+              accept=".png, .jpg, .gif"
               onChange={changeFile}
             />
           </li>
