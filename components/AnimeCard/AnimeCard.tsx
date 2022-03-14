@@ -13,6 +13,8 @@ const AnimeCardStyle = styled.section`
   transition: 0.3s;
 
   & .images {
+    object-fit: cover;
+    object-position: center;
     border-radius: 5px;
     height: 250px;
     min-height: 250px;
@@ -107,7 +109,7 @@ const AnimeCardStyle = styled.section`
   }
 `;
 
-const AnimeCard = ({ id, autor, name, image }: Anime): JSX.Element => {
+const AnimeCard = ({ id, name, image }: Anime): JSX.Element => {
   const dispatch = useDispatch();
 
   const deleteAnime = (id: string) => {
