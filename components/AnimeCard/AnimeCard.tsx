@@ -131,7 +131,7 @@ const AnimeCard = ({ id, autor, name, image }: Anime): JSX.Element => {
           <p className="autor">{name}</p>
           <span className="line"></span>
           <button onClick={() => deleteAnime(id as string)} className="buttons">
-            <FontAwesomeIcon icon={faTrash} />
+            <FontAwesomeIcon icon={faTrash} title="delete-icon" />
           </button>
           <ToastContainer
             position="top-right"
