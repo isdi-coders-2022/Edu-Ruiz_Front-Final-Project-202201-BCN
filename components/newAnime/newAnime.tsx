@@ -184,7 +184,7 @@ const NewAnime = (): JSX.Element => {
         Router.push("/");
       }, 2000);
     } else {
-      toastMessage("custom");
+      toastMessage("this anime already exists 🙈", "error");
     }
   };
 
