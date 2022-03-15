@@ -1,9 +1,12 @@
 /* eslint-disable @next/next/no-img-element */
+import "react-toastify/dist/ReactToastify.css";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { toast, ToastContainer } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import styled from "styled-components";
 import { createAnimeThunk } from "../../redux/thunks/animeThunks";
+import toastMessage from "../../utils/toastNotify";
+import Router from "next/router";
 
 const FormContainer = styled.form`
   display: flex;
@@ -91,7 +94,7 @@ const FormContainer = styled.form`
         justify-content: center;
         align-items: center;
         border-radius: 3px;
-        content: "Seleccionar"; /* testo por defecto */
+        content: "Seleccionar";
         position: absolute;
         left: 0;
         right: 0;
@@ -172,9 +175,17 @@ const NewAnime = (): JSX.Element => {
     }
   };
 
-  const submitForm = (event: React.ChangeEvent<HTMLFormElement>) => {
+  const submitForm = async (event: React.ChangeEvent<HTMLFormElement>) => {
     event.preventDefault();
-    dispatch(createAnimeThunk(formData));
+    const returnDispatch: any = await dispatch(createAnimeThunk(formData));
+    if (!returnDispatch.errorCode) {
+      toastMessage("New anime created 🐼", "normal");
+      setTimeout(() => {
+        Router.push("/");
+      }, 2000);
+    } else {
+      toastMessage("custom");
+    }
   };
 
   return (
@@ -191,7 +202,7 @@ const NewAnime = (): JSX.Element => {
               <h1 className="title">New Anime</h1>
               <img
                 src={imgData.imageDefault}
-                alt=""
+                alt="image-preview"
                 id="img"
                 className={!imgData.imageDefault ? "hidden" : "imageSize"}
               />
@@ -248,7 +259,7 @@ const NewAnime = (): JSX.Element => {
       </FormContainer>
       <ToastContainer
         position="top-right"
-        autoClose={3000}
+        autoClose={1000}
         hideProgressBar={false}
         newestOnTop={false}
         closeOnClick={false}

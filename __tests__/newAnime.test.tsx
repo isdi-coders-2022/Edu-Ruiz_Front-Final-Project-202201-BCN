@@ -32,5 +32,6 @@ describe("when its rendered", () => {
 
     const input = screen.getByRole("textbox", { name: /name/i });
     userEvent.type(input, inputedText);
+    expect(input).toHaveValue(inputedText);
   });
 });
