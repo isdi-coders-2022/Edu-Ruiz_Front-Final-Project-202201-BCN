@@ -48,11 +48,10 @@ export const createAnimeThunk =
 
     try {
       const response = await axios.post(url, data, config);
-      console.log(response);
+
       const test = await dispatch(createAnimeAction(response.data));
       return test;
     } catch (error) {
-      console.log(error);
       return { errorCode: "400" };
     }
   };
