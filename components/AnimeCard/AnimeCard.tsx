@@ -7,6 +7,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faPencil, faTrash } from "@fortawesome/free-solid-svg-icons";
+import toastMessage from "../../utils/toastNotify";
 
 const AnimeCardStyle = styled.section`
   border-radius: 5px;
@@ -113,15 +114,7 @@ const AnimeCard = ({ id, name, image }: Anime): JSX.Element => {
   const dispatch = useDispatch();
 
   const deleteAnime = (id: string) => {
-    toast(`${name} is deleted 💀`, {
-      position: "top-right",
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: false,
-      pauseOnHover: false,
-      draggable: true,
-      progress: undefined,
-    });
+    toastMessage(`${name} is deleted 💀`, "warning");
     dispatch(deleteAnimeThunk(id));
   };
 
