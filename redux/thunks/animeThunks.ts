@@ -5,8 +5,6 @@ import {
   loadAnimesAction,
 } from "../actions/actionsCreator";
 import axios from "axios";
-import { toast } from "react-toastify";
-import Router from "next/router";
 
 export const loadAnimeListThunk = async (dispatch: Dispatch) => {
   const response = await fetch(`${process.env.NEXT_PUBLIC_ANIME4ME}animes/`, {
@@ -50,17 +48,11 @@ export const createAnimeThunk =
 
     try {
       const response = await axios.post(url, data, config);
-      dispatch(createAnimeAction(response.data));
-      Router.push("/");
+      console.log(response);
+      const test = await dispatch(createAnimeAction(response.data));
+      return test;
     } catch (error) {
-      toast(`This anime already existed 🐼`, {
-        position: "top-right",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: false,
-        pauseOnHover: false,
-        draggable: true,
-        progress: undefined,
-      });
+      console.log(error);
+      return { errorCode: "400" };
     }
   };
