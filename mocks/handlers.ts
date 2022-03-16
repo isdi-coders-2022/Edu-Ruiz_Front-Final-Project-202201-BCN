@@ -42,4 +42,10 @@ export const handlers = [
       );
     }
   ),
+  rest.post(
+    `${process.env.NEXT_PUBLIC_ANIME4ME}animes/create`,
+    (req, res, ctx) => {
+      return res(ctx.status(400), ctx.json({}));
+    }
+  ),
 ];

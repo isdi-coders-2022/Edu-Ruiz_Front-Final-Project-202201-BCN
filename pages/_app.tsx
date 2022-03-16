@@ -2,17 +2,15 @@ import "../styles/globals.css";
 import Layout from "../components/Layout/Layout";
 import "@fontsource/readex-pro";
 import { AppProps } from "next/app";
-import { Provider } from "react-redux";
-import store from "../redux/store";
+import { FC } from "react";
+import { wrapper } from "../redux/store";
 
-const MyApp = ({ Component, pageProps }: AppProps) => {
+const WrappedApp: FC<AppProps> = ({ Component, pageProps }: AppProps) => {
   return (
-    <Provider store={store}>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
-    </Provider>
+    <Layout>
+      <Component {...pageProps} />
+    </Layout>
   );
 };
 
-export default MyApp;
+export default wrapper.withRedux(WrappedApp);

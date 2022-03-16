@@ -6,12 +6,12 @@ import {
 } from "../actions/actionsCreator";
 import axios from "axios";
 
-export const loadAnimeListThunk = async (dispatch: Dispatch) => {
+export const loadAnimeListThunk = () => async (dispatch: Dispatch) => {
   const response = await fetch(`${process.env.NEXT_PUBLIC_ANIME4ME}animes/`, {
     method: "GET",
   });
-  const animeList = await response.json();
-  const animeArray = animeList.animes;
+  const animeList: any = await response.json();
+  const animeArray: any = animeList.animes;
 
   dispatch(loadAnimesAction(animeArray));
 };

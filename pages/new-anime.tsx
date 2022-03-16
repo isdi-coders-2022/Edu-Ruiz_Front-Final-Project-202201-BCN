@@ -10,7 +10,7 @@ const ContNewAnime = styled.section`
   background-color: #1a0e17;
 `;
 
-const newAnime = () => {
+const CreateAnime = () => {
   return (
     <>
       <ContNewAnime>
@@ -20,4 +20,4 @@ const newAnime = () => {
   );
 };
 
-export default newAnime;
+export default CreateAnime;

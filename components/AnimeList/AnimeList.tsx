@@ -3,8 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import Anime from "../../interfaces/Anime";
 import AnimeCard from "../AnimeCard/AnimeCard";
-import { RootState } from "../../redux/store";
-import { loadAnimeListThunk } from "../../redux/thunks/animeThunks";
+import {
+  deleteAnimeThunk,
+  loadAnimeListThunk,
+} from "../../redux/thunks/animeThunks";
+import toastMessage from "../../utils/toastNotify";
 
 const ContainerAnime = styled.div`
   margin: 10px;
@@ -14,6 +17,7 @@ const ContainerAnime = styled.div`
   display: flex;
   justify-content: center;
   align-items: flex-start;
+  scroll-behavior: auto;
 
   @media (max-width: 600px) {
     margin: 10px;
@@ -26,7 +30,7 @@ const ContainerAnime = styled.div`
 `;
 
 const AnimeList = (): JSX.Element => {
-  const animesList = useSelector((state: RootState) => state.animes);
+  const animesList = useSelector((state: any) => state.animes);
 
   const dispatch = useDispatch();
 
@@ -34,11 +38,17 @@ const AnimeList = (): JSX.Element => {
     dispatch(loadAnimeListThunk);
   }, [dispatch]);
 
+  const deleteAnime = (id: string) => {
+    toastMessage(`${animesList.name} is deleted 💀`, "warning");
+    dispatch(deleteAnimeThunk(id));
+  };
+
   return (
     <>
       {animesList.map((anime: Anime) => (
         <ContainerAnime key={anime.id}>
           <AnimeCard
+            deleteAnime={deleteAnime}
             id={anime.id}
             autor={anime.autor}
             name={anime.name}

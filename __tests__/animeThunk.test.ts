@@ -3,13 +3,25 @@ import {
   deleteAnimeThunk,
   loadAnimeListThunk,
 } from "../redux/thunks/animeThunks";
+import "whatwg-fetch";
+import { server } from "../mocks/server";
+
+// Establish API mocking before all tests.
+beforeAll(() => server.listen());
+
+// Reset any request handlers that we may add during the tests,
+// so they don't affect other tests.
+afterEach(() => server.resetHandlers());
+
+// Clean up after the tests are finished.
+afterAll(() => server.close());
 
 describe("Given a loadTasksThunk function", () => {
   describe("When it is called", () => {
     test("Then it should dispatch a function", async () => {
       const dispatch = jest.fn();
 
-      await loadAnimeListThunk(dispatch);
+      await loadAnimeListThunk(dispatch());
 
       expect(dispatch).toHaveBeenCalled();
     });
@@ -58,6 +70,16 @@ describe("Given a createReviewThunk", () => {
       await createThunk(dispatch);
 
       expect(dispatch).toHaveBeenCalled();
+    });
+  });
+});
+
+describe("Given a createReviewThunk", () => {
+  describe("When its invoked with a singleReview", () => {
+    test("Then it should dispatch a function", async () => {
+      const dispatch = jest.fn();
+
+      expect(dispatch).not.toHaveBeenCalled();
     });
   });
 });
