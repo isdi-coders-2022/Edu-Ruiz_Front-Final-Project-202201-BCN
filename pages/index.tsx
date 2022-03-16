@@ -1,5 +1,9 @@
 import styled from "styled-components";
 import AnimeList from "../components/AnimeList/AnimeList";
+import { wrapper } from "../redux/store";
+import { loadAnimeListThunk } from "../redux/thunks/animeThunks";
+import "whatwg-fetch";
+import { NextPage } from "next";
 
 const ContainerMain = styled.section`
   min-height: 100vh;
@@ -14,7 +18,7 @@ const ContainerAnime = styled.section`
   justify-content: center;
 `;
 
-const Home = (): JSX.Element => {
+const Home: NextPage = () => {
   return (
     <ContainerMain>
       <ContainerAnime>
@@ -25,3 +29,10 @@ const Home = (): JSX.Element => {
 };
 
 export default Home;
+
+export const getServerSideProps = wrapper.getServerSideProps(
+  (store) => async () => {
+    const animes = await store.dispatch<any>(loadAnimeListThunk());
+    return { props: { animes } };
+  }
+);

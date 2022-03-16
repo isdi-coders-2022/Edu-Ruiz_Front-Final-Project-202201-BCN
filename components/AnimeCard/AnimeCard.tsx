@@ -110,14 +110,7 @@ const AnimeCardStyle = styled.section`
   }
 `;
 
-const AnimeCard = ({ id, name, image }: Anime): JSX.Element => {
-  const dispatch = useDispatch();
-
-  const deleteAnime = (id: string) => {
-    toastMessage(`${name} is deleted 💀`, "warning");
-    dispatch(deleteAnimeThunk(id));
-  };
-
+const AnimeCard = ({ id, name, image, deleteAnime }: Anime): JSX.Element => {
   return (
     <>
       <AnimeCardStyle>
@@ -125,8 +118,8 @@ const AnimeCard = ({ id, name, image }: Anime): JSX.Element => {
         <section>
           <p className="autor">{name}</p>
           <span className="line"></span>
-          <button onClick={() => deleteAnime(id as string)} className="buttons">
-            <FontAwesomeIcon icon={faTrash} title="delete-icon" />
+          <button onClick={deleteAnime} className="buttons">
+            <FontAwesomeIcon icon={faTrash} title="deleteButton" />
           </button>
           <ToastContainer
             position="top-right"
