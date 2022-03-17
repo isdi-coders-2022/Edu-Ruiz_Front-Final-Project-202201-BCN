@@ -12,6 +12,7 @@ const ContainerMain = styled.section`
 `;
 
 const ContainerAnime = styled.section`
+  min-height: 80vh;
   margin-top: 60px;
   display: flex;
   flex-wrap: wrap;
@@ -32,7 +33,7 @@ export default Home;
 
 export const getServerSideProps = wrapper.getServerSideProps(
   (store) => async () => {
-    const animes = await store.dispatch<any>(loadAnimeListThunk());
-    return { props: { animes } };
+    await store.dispatch<any>(loadAnimeListThunk());
+    return { props: {} };
   }
 );

@@ -14,6 +14,7 @@ const Menu = styled.div`
   width: 200px;
   padding: 10px;
   font-family: "Readex Pro";
+  z-index: 999;
 
   & .floating {
     margin-top: 20px;

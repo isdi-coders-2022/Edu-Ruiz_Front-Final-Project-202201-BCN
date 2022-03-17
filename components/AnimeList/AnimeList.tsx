@@ -31,7 +31,6 @@ const ContainerAnime = styled.div`
 
 const AnimeList = (): JSX.Element => {
   const animesList = useSelector((state: any) => state.animes);
-
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -39,7 +38,7 @@ const AnimeList = (): JSX.Element => {
   }, [dispatch]);
 
   const deleteAnime = (id: string) => {
-    toastMessage(`${animesList.name} is deleted 💀`, "warning");
+    toastMessage(`${animesList[0].name} is deleted 💀`, "warning");
     dispatch(deleteAnimeThunk(id));
   };
 
@@ -48,7 +47,7 @@ const AnimeList = (): JSX.Element => {
       {animesList.map((anime: Anime) => (
         <ContainerAnime key={anime.id}>
           <AnimeCard
-            deleteAnime={deleteAnime}
+            deleteAnime={() => deleteAnime(anime.id as string)}
             id={anime.id}
             autor={anime.autor}
             name={anime.name}

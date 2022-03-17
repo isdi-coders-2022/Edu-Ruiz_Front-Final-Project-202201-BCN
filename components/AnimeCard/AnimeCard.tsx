@@ -1,13 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
-import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import Anime from "../../interfaces/Anime";
-import { deleteAnimeThunk } from "../../redux/thunks/animeThunks";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEye, faPencil, faTrash } from "@fortawesome/free-solid-svg-icons";
-import toastMessage from "../../utils/toastNotify";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
 const AnimeCardStyle = styled.section`
   border-radius: 5px;
