@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import Anime from "../../interfaces/Anime";
 import AnimeCard from "../AnimeCard/AnimeCard";
@@ -7,7 +7,6 @@ import {
   deleteAnimeThunk,
   loadAnimeListThunk,
 } from "../../redux/thunks/animeThunks";
-import toastMessage from "../../utils/toastNotify";
 
 const ContainerAnime = styled.div`
   margin: 10px;
@@ -17,7 +16,6 @@ const ContainerAnime = styled.div`
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  scroll-behavior: auto;
 
   @media (max-width: 600px) {
     margin: 10px;
@@ -29,8 +27,7 @@ const ContainerAnime = styled.div`
   }
 `;
 
-const AnimeList = (): JSX.Element => {
-  const animesList = useSelector((state: any) => state.animes);
+const AnimeList = ({ animesList }: any): JSX.Element => {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -38,7 +35,6 @@ const AnimeList = (): JSX.Element => {
   }, [dispatch]);
 
   const deleteAnime = (id: string) => {
-    toastMessage(`Anime erased 💀`, "warning");
     dispatch(deleteAnimeThunk(id));
   };
 

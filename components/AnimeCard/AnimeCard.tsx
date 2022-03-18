@@ -1,7 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import styled from "styled-components";
 import Anime from "../../interfaces/Anime";
-import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
@@ -121,18 +120,6 @@ const AnimeCard = ({ id, name, image, deleteAnime }: Anime): JSX.Element => {
           <button onClick={deleteAnime} className="buttons">
             <FontAwesomeIcon icon={faTrash} title="deleteButton" />
           </button>
-          <ToastContainer
-            position="top-right"
-            autoClose={3000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick={false}
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover={false}
-            theme={"dark"}
-          />
         </section>
       </AnimeCardStyle>
     </>
