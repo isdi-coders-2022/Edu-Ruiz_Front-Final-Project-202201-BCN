@@ -2,7 +2,6 @@
 import "react-toastify/dist/ReactToastify.css";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { ToastContainer } from "react-toastify";
 import styled from "styled-components";
 import { createAnimeThunk } from "../../redux/thunks/animeThunks";
 import toastMessage from "../../utils/toastNotify";
@@ -179,10 +178,7 @@ const NewAnime = (): JSX.Element => {
     event.preventDefault();
     const returnDispatch: any = await dispatch(createAnimeThunk(formData));
     if (!returnDispatch.errorCode) {
-      toastMessage("New anime created 🐼", "normal");
-      setTimeout(() => {
-        Router.push("/");
-      }, 2000);
+      Router.push("/");
     } else {
       toastMessage("this anime already exists 🙈", "error");
     }
@@ -257,18 +253,6 @@ const NewAnime = (): JSX.Element => {
           </li>
         </ul>
       </FormContainer>
-      <ToastContainer
-        position="top-right"
-        autoClose={1000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick={false}
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover={false}
-        theme={"dark"}
-      />
     </>
   );
 };
