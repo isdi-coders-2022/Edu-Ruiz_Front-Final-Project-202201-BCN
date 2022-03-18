@@ -4,9 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useSelector } from "react-redux";
 
 const AnimeDetail = (): JSX.Element => {
-  debugger;
   const animeDetail = useSelector((state: any) => state.anime);
-  debugger;
 
   return (
     <>
