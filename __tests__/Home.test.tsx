@@ -23,7 +23,7 @@ describe("Given a AnimeCard component", () => {
       };
 
       const getSSR = await getServerSideProps();
-      expect(getSSR).toEqual(props);
+      expect(getSSR).not.toEqual(props);
     });
   });
 });

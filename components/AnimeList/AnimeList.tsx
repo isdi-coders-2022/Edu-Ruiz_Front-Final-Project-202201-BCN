@@ -38,7 +38,7 @@ const AnimeList = (): JSX.Element => {
   }, [dispatch]);
 
   const deleteAnime = (id: string) => {
-    toastMessage(`${animesList[0].name} is deleted 💀`, "warning");
+    toastMessage(`Anime erased 💀`, "warning");
     dispatch(deleteAnimeThunk(id));
   };
 

@@ -2,6 +2,7 @@ import { Dispatch } from "redux";
 import {
   createAnimeAction,
   deleteAnimeAction,
+  loadAnimeAction,
   loadAnimesAction,
 } from "../actions/actionsCreator";
 import axios from "axios";
@@ -25,6 +26,21 @@ export const deleteAnimeThunk = (id: string) => async (dispatch: Dispatch) => {
   );
   if (!response.ok) return;
   dispatch(deleteAnimeAction(id));
+};
+
+export const loadAnimeThunk = (id: string) => async (dispatch: Dispatch) => {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_ANIME4ME}animes/${id}`,
+    {
+      method: "GET",
+    }
+  );
+
+  const animeDetailResponse = await response.json();
+  const sendJSON = JSON.stringify(animeDetailResponse.animes);
+  const parseJSON = JSON.parse(sendJSON);
+
+  dispatch(loadAnimeAction(parseJSON));
 };
 
 interface createAnimeThunkProps {

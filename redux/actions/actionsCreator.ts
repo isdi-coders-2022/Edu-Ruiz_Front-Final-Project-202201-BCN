@@ -16,3 +16,8 @@ export const createAnimeAction = (newAnime: Object) => ({
   type: actionsTypes.createAnime,
   newAnime,
 });
+
+export const loadAnimeAction = (anime: Anime) => ({
+  type: actionsTypes.loadAnime,
+  anime,
+});
