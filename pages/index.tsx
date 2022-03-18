@@ -4,6 +4,7 @@ import { wrapper } from "../redux/store";
 import { loadAnimeListThunk } from "../redux/thunks/animeThunks";
 import "whatwg-fetch";
 import { NextPage } from "next";
+import { useSelector } from "react-redux";
 
 const ContainerMain = styled.section`
   min-height: 100vh;
@@ -20,10 +21,12 @@ const ContainerAnime = styled.section`
 `;
 
 const Home: NextPage = () => {
+  const animesList = useSelector((state: any) => state.animes);
+
   return (
     <ContainerMain>
       <ContainerAnime>
-        <AnimeList />
+        <AnimeList animesList={animesList} />
       </ContainerAnime>
     </ContainerMain>
   );
