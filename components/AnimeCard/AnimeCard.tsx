@@ -5,6 +5,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import Link from "next/link";
 
 const AnimeCardStyle = styled.section`
   border-radius: 5px;
@@ -111,7 +112,9 @@ const AnimeCard = ({ id, name, image, deleteAnime }: Anime): JSX.Element => {
   return (
     <>
       <AnimeCardStyle>
-        <img className="images" src={image} alt={name} />
+        <Link href={`/anime/${id}`} passHref>
+          <img className="images" src={image} alt={name} />
+        </Link>
         <section>
           <p className="autor">{name}</p>
           <span className="line"></span>
