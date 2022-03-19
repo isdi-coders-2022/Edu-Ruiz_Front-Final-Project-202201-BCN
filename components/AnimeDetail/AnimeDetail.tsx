@@ -28,6 +28,9 @@ const ContainerDetail = styled.div`
 
       & .contimg {
         & .images {
+          border: 2px solid #000;
+          box-shadow: 3px 3px 3px 0px #000;
+          border-radius: 5px;
           object-fit: cover;
           margin-right: 50px;
           height: 200px;
@@ -58,6 +61,34 @@ const ContainerDetail = styled.div`
       display: flex;
       justify-content: space-between;
       padding: 30px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    height: 200vh;
+
+    & .container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border-radius: 10px;
+      background-color: #ff006a;
+      & .container-top {
+        & .contimg {
+          & .images {
+          }
+        }
+      }
+
+      & .container-mid {
+        & .param {
+        }
+        & .text {
+        }
+      }
+
+      & .container-bottom {
+      }
     }
   }
 `;
@@ -109,9 +140,7 @@ const AnimeDetail = ({ animeDetail }: any): JSX.Element => {
                 alt={animeDetail.name}
               />
             </div>
-            <ButtonStyle onClick={animeDetail.name} className="buttons">
-              edit anime
-            </ButtonStyle>
+            <ButtonStyle className="buttons">edit anime</ButtonStyle>
           </section>
           <section className="container-mid">
             <p className="param">name:</p>
