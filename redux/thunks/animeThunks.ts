@@ -37,10 +37,8 @@ export const loadAnimeThunk = (id: string) => async (dispatch: Dispatch) => {
   );
 
   const animeDetailResponse = await response.json();
-  const sendJSON = JSON.stringify(animeDetailResponse.animes);
-  const parseJSON = JSON.parse(sendJSON);
 
-  dispatch(loadAnimeAction(parseJSON));
+  dispatch(loadAnimeAction(animeDetailResponse));
 };
 
 interface createAnimeThunkProps {

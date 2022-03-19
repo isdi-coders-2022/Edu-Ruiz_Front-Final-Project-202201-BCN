@@ -41,9 +41,14 @@ export const getStaticProps = wrapper.getStaticProps(
       const id = context.params?.id;
       try {
         await store.dispatch<any>(loadAnimeThunk(id as string));
-        return { props: { id } };
+        return {
+          props: {
+            id,
+          },
+          revalidate: 2,
+        };
       } catch (error) {
-        return { props: {} };
+        return { notFound: true };
       }
     }
 );
