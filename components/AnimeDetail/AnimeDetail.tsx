@@ -28,6 +28,9 @@ const ContainerDetail = styled.div`
 
       & .contimg {
         & .images {
+          border: 2px solid #000;
+          box-shadow: 3px 3px 3px 0px #000;
+          border-radius: 5px;
           object-fit: cover;
           margin-right: 50px;
           height: 200px;
