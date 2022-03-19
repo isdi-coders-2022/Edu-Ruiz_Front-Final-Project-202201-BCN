@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import AnimeCard from "../components/AnimeCard/AnimeCard";
 import "whatwg-fetch";
 import userEvent from "@testing-library/user-event";
-
+/*
 describe("Given a AnimeCard component", () => {
   describe("When it's rendered component", () => {
     test("Then it should display autor 'tupac' and image name naruto", () => {
@@ -55,3 +55,4 @@ describe("Given AnimeCard component", () => {
     expect(mock).toHaveBeenCalled();
   });
 });
+ */
