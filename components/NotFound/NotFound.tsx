@@ -41,6 +41,13 @@ const ContainerError = styled.div`
     transform: scaleX(1);
     transform-origin: bottom center;
   }
+
+  @media (max-width: 600px) {
+    & img {
+      height: 170px;
+      width: 300px;
+    }
+  }
 `;
 
 const NotFound = () => {
