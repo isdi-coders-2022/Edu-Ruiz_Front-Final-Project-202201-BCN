@@ -131,6 +131,7 @@ const AnimeCardStyle = styled.section`
     }
   }
 `;
+
 const ButtonStyle = styled.button`
   display: none;
 `;
