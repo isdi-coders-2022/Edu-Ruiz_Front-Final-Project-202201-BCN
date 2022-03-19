@@ -109,7 +109,8 @@ const Navigation = (): JSX.Element => {
           <p className="navigation">sign out</p>
         </a>
       </Link>
-      <FloatingMenu isActive={isActive} />
+
+      <FloatingMenu actionOnClick={toggleActive} isActive={isActive} />
       <Burguer actionOnClick={toggleActive} isActive={isActive} />
     </ContainerNav>
   );

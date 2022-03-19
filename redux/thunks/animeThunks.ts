@@ -6,6 +6,7 @@ import {
   loadAnimesAction,
 } from "../actions/actionsCreator";
 import axios from "axios";
+import toastMessage from "../../utils/toastNotify";
 
 export const loadAnimeListThunk = () => async (dispatch: Dispatch) => {
   const response = await fetch(`${process.env.NEXT_PUBLIC_ANIME4ME}animes/`, {
@@ -26,6 +27,7 @@ export const deleteAnimeThunk = (id: string) => async (dispatch: Dispatch) => {
   );
   if (!response.ok) return;
   dispatch(deleteAnimeAction(id));
+  toastMessage(`Anime deleted 💀`, "warning");
 };
 
 export const loadAnimeThunk = (id: string) => async (dispatch: Dispatch) => {
@@ -62,8 +64,8 @@ export const createAnimeThunk =
 
     try {
       const response = await axios.post(url, data, config);
-
       const test = await dispatch(createAnimeAction(response.data));
+      toastMessage(`${formData.name} is created 🤍`, "normal");
       return test;
     } catch (error) {
       return { errorCode: "400" };
