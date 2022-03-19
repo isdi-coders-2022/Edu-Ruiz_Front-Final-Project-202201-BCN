@@ -154,6 +154,7 @@ const AnimeCard = ({ id, name, image, deleteAnime }: Anime): JSX.Element => {
             <ButtonStyle
               onClick={() => deleteAnime(id as string)}
               className="buttons"
+              title="deleteButton"
             >
               <FontAwesomeIcon className="icon" icon={faTrash} />
             </ButtonStyle>
