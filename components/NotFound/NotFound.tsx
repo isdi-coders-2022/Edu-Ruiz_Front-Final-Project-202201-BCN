@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+import Link from "next/link";
 import styled from "styled-components";
 
 const ContainerError = styled.div`
@@ -13,6 +14,33 @@ const ContainerError = styled.div`
     font-family: "Readex Pro";
     color: #ff006b;
   }
+
+  & h2 {
+    margin-top: 20px;
+    font-family: "Readex Pro";
+    color: #ff006b;
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+  }
+
+  & h2:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #fff;
+    transform-origin: bottom;
+    transition: transform 0.3s ease-out;
+  }
+
+  & h2:hover:after {
+    transform: scaleX(1);
+    transform-origin: bottom center;
+  }
 `;
 
 const NotFound = () => {
@@ -23,6 +51,9 @@ const NotFound = () => {
         alt="404 image"
       />
       <h1>404 - Page Not Found</h1>
+      <Link href="/" passHref>
+        <h2>return to home</h2>
+      </Link>
     </ContainerError>
   );
 };

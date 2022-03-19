@@ -1,5 +1,4 @@
 import { GetStaticPaths, GetStaticPropsContext } from "next";
-import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 import AnimeDetail from "../../components/AnimeDetail/AnimeDetail";
 import NotFound from "../../components/NotFound/NotFound";
@@ -9,8 +8,8 @@ import { loadAnimeThunk } from "../../redux/thunks/animeThunks";
 
 const Details = (): JSX.Element => {
   const animeDetail: any = useSelector<any, any>((state: any) => state.anime);
-  const router = useRouter();
-  if (router.isFallback) {
+
+  if (!animeDetail.id) {
     return <NotFound />;
   }
 
