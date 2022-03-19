@@ -65,29 +65,39 @@ const ContainerDetail = styled.div`
   }
 
   @media (max-width: 600px) {
-    height: 200vh;
-
     & .container {
+      height: 80vh;
+      width: 300px;
+      margin-top: 40px;
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: space-between;
       border-radius: 10px;
       background-color: #ff006a;
       & .container-top {
+        flex-direction: column-reverse;
+        justify-content: center;
+        align-items: center;
         & .contimg {
+          padding: 10px;
+          margin-left: 40px;
           & .images {
+            border: 2px solid #000;
+            box-shadow: 3px 3px 3px 0px #000;
+            border-radius: 5px;
+            object-fit: cover;
+            margin-right: 50px;
+            height: 150px;
+            width: 100px;
+            transition: 0.4s;
           }
         }
       }
 
-      & .container-mid {
-        & .param {
-        }
-        & .text {
-        }
-      }
-
       & .container-bottom {
+        & button {
+          margin: 2px;
+        }
       }
     }
   }
@@ -119,14 +129,6 @@ const AnimeDetail = ({ animeDetail }: any): JSX.Element => {
     router.push("/");
     dispatch(deleteAnimeThunk(id));
   };
-
-  if (router.isFallback) {
-    return (
-      <>
-        <Custom404 />
-      </>
-    );
-  }
 
   return (
     <>

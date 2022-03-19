@@ -20,6 +20,8 @@ const BurgerContainer = styled.div`
   }
   @media (min-width: 600px) {
     display: none;
+    position: absolute;
+    z-index: -999;
   } ;
 `;
 

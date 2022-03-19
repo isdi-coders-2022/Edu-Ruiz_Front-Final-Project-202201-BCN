@@ -1,6 +1,5 @@
 import Head from "next/head";
 import { FunctionComponent } from "react";
-import styled from "styled-components";
 import Navigation from "../Navigation/Navigation";
 
 const Layout: FunctionComponent = ({ children }) => {

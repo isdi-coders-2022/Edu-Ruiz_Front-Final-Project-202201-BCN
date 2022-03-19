@@ -24,6 +24,9 @@ const Menu = styled.div`
 
   @media (min-width: 600px) {
     display: none;
+    position: absolute;
+    z-index: -99;
+
     & .floating {
       color: white;
       display: none;
@@ -31,38 +34,63 @@ const Menu = styled.div`
   }
 `;
 
+const TouchDiv = styled.div`
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  min-height: 100vh;
+  min-width: 100vw;
+`;
+
+const Blanc = styled.section`
+  display: none;
+`;
 interface FloatingMenuProps {
   isActive: boolean;
+  actionOnClick: React.MouseEventHandler<HTMLDivElement>;
 }
 
-const FloatingMenu = ({ isActive }: FloatingMenuProps): JSX.Element => {
+const FloatingMenu = ({
+  isActive,
+  actionOnClick,
+}: FloatingMenuProps): JSX.Element => {
   return isActive ? (
-    <Menu>
-      <section>
-        <Link href="/profile">
+    <>
+      <TouchDiv onClick={actionOnClick} className="touch"></TouchDiv>
+      <Menu>
+        <section>
+          <Link href="/">
+            <a>
+              <p className="floating">home</p>
+            </a>
+          </Link>
+          <Link href="/profile">
+            <a>
+              <p className="floating">profile</p>
+            </a>
+          </Link>
+          <Link href="/my-anime">
+            <a>
+              <p className="floating">my Anime</p>
+            </a>
+          </Link>
+          <Link href="/new-anime">
+            <a>
+              <p className="floating">new Anime</p>
+            </a>
+          </Link>
+        </section>
+        <Link href="/login">
           <a>
-            <p className="floating">profile</p>
+            <p className="floating">sign out</p>
           </a>
         </Link>
-        <Link href="/my-anime">
-          <a>
-            <p className="floating">my Anime</p>
-          </a>
-        </Link>
-        <Link href="/new-anime">
-          <a>
-            <p className="floating">new Anime</p>
-          </a>
-        </Link>
-      </section>
-      <Link href="/login">
-        <a>
-          <p className="floating">sign out</p>
-        </a>
-      </Link>
-    </Menu>
+      </Menu>
+    </>
   ) : (
-    <div></div>
+    <Blanc className="blanc"></Blanc>
   );
 };
 
