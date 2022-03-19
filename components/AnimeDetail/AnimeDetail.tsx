@@ -60,6 +60,34 @@ const ContainerDetail = styled.div`
       padding: 30px;
     }
   }
+
+  @media (max-width: 600px) {
+    height: 200vh;
+
+    & .container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border-radius: 10px;
+      background-color: #ff006a;
+      & .container-top {
+        & .contimg {
+          & .images {
+          }
+        }
+      }
+
+      & .container-mid {
+        & .param {
+        }
+        & .text {
+        }
+      }
+
+      & .container-bottom {
+      }
+    }
+  }
 `;
 
 const ButtonStyle = styled.button`
@@ -109,9 +137,7 @@ const AnimeDetail = ({ animeDetail }: any): JSX.Element => {
                 alt={animeDetail.name}
               />
             </div>
-            <ButtonStyle onClick={animeDetail.name} className="buttons">
-              edit anime
-            </ButtonStyle>
+            <ButtonStyle className="buttons">edit anime</ButtonStyle>
           </section>
           <section className="container-mid">
             <p className="param">name:</p>

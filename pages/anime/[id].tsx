@@ -1,6 +1,6 @@
 import { GetStaticPaths, GetStaticPropsContext } from "next";
 import { useSelector } from "react-redux";
-import AnimeDetail from "../../components/Anime/AnimeDetail";
+import AnimeDetail from "../../components/AnimeDetail/AnimeDetail";
 
 import { wrapper } from "../../redux/store";
 import { loadAnimeThunk } from "../../redux/thunks/animeThunks";
