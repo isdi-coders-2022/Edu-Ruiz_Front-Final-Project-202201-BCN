@@ -4,6 +4,7 @@ import {
   deleteAnimeAction,
   loadAnimeAction,
   loadAnimesAction,
+  updateAnimeAction,
 } from "../actions/actionsCreator";
 import axios from "axios";
 import toastMessage from "../../utils/toastNotify";
@@ -70,4 +71,20 @@ export const createAnimeThunk =
     } catch (error) {
       return { errorCode: "400" };
     }
+  };
+
+export const updateAnimeThunk =
+  (response: any, id: string) => async (dispatch: Dispatch) => {
+    await axios
+      .patch(`${process.env.NEXT_PUBLIC_ANIME4ME}animes/edit/${id}`, response, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
+      .then((response) => {
+        (dispatch as Dispatch)(updateAnimeAction(response.data));
+      })
+      .catch((error) => {
+        return { errorCode: "400" };
+      });
   };

@@ -18,6 +18,9 @@ const singleAnimeReducer = (
     case actionsTypes.loadAnime:
       animeDetails = { ...action.anime };
       break;
+    case actionsTypes.updateAnime:
+      animeDetails = { ...action.anime };
+      break;
     default:
       animeDetails = { ...currentAnime };
   }

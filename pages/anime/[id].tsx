@@ -1,4 +1,5 @@
 import { GetStaticPaths, GetStaticPropsContext } from "next";
+
 import { useSelector } from "react-redux";
 import AnimeDetail from "../../components/AnimeDetail/AnimeDetail";
 import NotFound from "../../components/NotFound/NotFound";

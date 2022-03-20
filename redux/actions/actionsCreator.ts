@@ -21,3 +21,28 @@ export const loadAnimeAction = (anime: Anime) => ({
   type: actionsTypes.loadAnime,
   anime,
 });
+
+export const updateAnimeAction = (anime: Anime) => ({
+  type: actionsTypes.updateAnime,
+  anime,
+});
+
+export const loginAction = (user: any) => ({
+  type: actionsTypes.login,
+  user,
+});
+
+export const registerAction = (newUser: any) => ({
+  type: actionsTypes.register,
+  newUser,
+});
+
+export const loadUsersAction = (users: any) => ({
+  type: actionsTypes.loadUsers,
+  users,
+});
+
+export const loadProfileAction = (user: any) => ({
+  type: actionsTypes.loadProfile,
+  user,
+});
