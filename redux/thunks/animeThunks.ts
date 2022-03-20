@@ -8,8 +8,6 @@ import {
 } from "../actions/actionsCreator";
 import axios from "axios";
 import toastMessage from "../../utils/toastNotify";
-import Anime from "../../interfaces/Anime";
-import { useSelector } from "react-redux";
 
 export const loadAnimeListThunk = () => async (dispatch: Dispatch) => {
   const response = await fetch(`${process.env.NEXT_PUBLIC_ANIME4ME}animes/`, {
