@@ -137,6 +137,21 @@ const ButtonStyle = styled.button`
 `;
 
 const AnimeCard = ({ id, name, image, deleteAnime }: Anime): JSX.Element => {
+  if (typeof window !== "undefined") {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      return (
+        <AnimeCardStyle>
+          <Link href={`/anime/${id}`} passHref>
+            <img className="images" src={image} alt={name} />
+          </Link>
+          <section>
+            <p className="autor">{name}</p>
+          </section>
+        </AnimeCardStyle>
+      );
+    }
+  }
   return (
     <>
       <AnimeCardStyle>

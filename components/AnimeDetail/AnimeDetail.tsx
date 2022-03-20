@@ -1,9 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
-import { useRouter } from "next/router";
+import Router, { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
-import Custom404 from "../../pages/404";
 import { deleteAnimeThunk } from "../../redux/thunks/animeThunks";
 
 const ContainerDetail = styled.div`
@@ -130,6 +129,11 @@ const AnimeDetail = ({ animeDetail }: any): JSX.Element => {
     router.push("/");
     dispatch(deleteAnimeThunk(id));
   };
+
+  if (typeof window !== "undefined") {
+    const token = localStorage.getItem("token");
+    token ?? Router.push("/login");
+  }
 
   return (
     <>

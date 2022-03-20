@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Router from "next/router";
 import { useState } from "react";
 import styled from "styled-components";
 import Burguer from "../Burguer/Burguer";
@@ -82,14 +83,52 @@ const Navigation = (): JSX.Element => {
     setIsActive(isActive ? false : true);
   };
 
+  const removeToken = () => {
+    localStorage.removeItem("token");
+  };
+
+  if (typeof window !== "undefined") {
+    const token = localStorage.getItem("token");
+    if (!token && Router.asPath === "/") {
+      return (
+        <ContainerNav>
+          <Link href="/" passHref>
+            <a>
+              <h1 className="title">Anime4me</h1>
+            </a>
+          </Link>
+
+          <Link href="/login" passHref>
+            <a>
+              <p onClick={removeToken} className="navigation">
+                Login
+              </p>
+            </a>
+          </Link>
+          <FloatingMenu actionOnClick={toggleActive} isActive={isActive} />
+          <Burguer actionOnClick={toggleActive} isActive={isActive} />
+        </ContainerNav>
+      );
+    } else if (!token) {
+      return (
+        <ContainerNav>
+          <Link href="/" passHref>
+            <a>
+              <h1 className="title">Anime4me</h1>
+            </a>
+          </Link>
+        </ContainerNav>
+      );
+    }
+  }
   return (
     <ContainerNav>
-      <Link href="/my-anime">
+      <Link href="/my-anime" passHref>
         <a>
           <p className="navigation">my Anime</p>
         </a>
       </Link>
-      <Link href="/new-anime">
+      <Link href="/new-anime" passHref>
         <a>
           <p className="navigation">new Anime</p>
         </a>
@@ -99,14 +138,16 @@ const Navigation = (): JSX.Element => {
           <h1 className="title">Anime4me</h1>
         </a>
       </Link>
-      <Link href="/profile">
+      <Link href="/profile" passHref>
         <a>
           <p className="navigation">profile</p>
         </a>
       </Link>
-      <Link href="/login">
+      <Link href="/login" passHref>
         <a>
-          <p className="navigation">sign out</p>
+          <p onClick={removeToken} className="navigation">
+            sign out
+          </p>
         </a>
       </Link>
 
