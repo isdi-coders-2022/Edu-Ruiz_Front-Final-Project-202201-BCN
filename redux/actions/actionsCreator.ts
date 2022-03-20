@@ -21,3 +21,8 @@ export const loadAnimeAction = (anime: Anime) => ({
   type: actionsTypes.loadAnime,
   anime,
 });
+
+export const updateAnimeAction = (anime: Anime) => ({
+  type: actionsTypes.updateAnime,
+  anime,
+});

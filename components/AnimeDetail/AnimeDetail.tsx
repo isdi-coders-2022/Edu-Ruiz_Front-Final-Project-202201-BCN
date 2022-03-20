@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+import Link from "next/link";
 import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
@@ -142,7 +143,9 @@ const AnimeDetail = ({ animeDetail }: any): JSX.Element => {
                 alt={animeDetail.name}
               />
             </div>
-            <ButtonStyle className="buttons">edit anime</ButtonStyle>
+            <Link href={`/anime/edit/${animeDetail.id}`} passHref>
+              <ButtonStyle className="buttons">edit anime</ButtonStyle>
+            </Link>
           </section>
           <section className="container-mid">
             <p className="param">name:</p>
