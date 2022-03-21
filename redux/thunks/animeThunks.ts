@@ -8,6 +8,7 @@ import {
 } from "../actions/actionsCreator";
 import axios from "axios";
 import toastMessage from "../../utils/toastNotify";
+import Anime from "../../interfaces/Anime";
 
 export const loadAnimeListThunk = () => async (dispatch: Dispatch) => {
   const response = await fetch(`${process.env.NEXT_PUBLIC_ANIME4ME}animes/`, {
@@ -74,17 +75,23 @@ export const createAnimeThunk =
   };
 
 export const updateAnimeThunk =
-  (response: any, id: string) => async (dispatch: Dispatch) => {
-    await axios
-      .patch(`${process.env.NEXT_PUBLIC_ANIME4ME}animes/edit/${id}`, response, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      })
-      .then((response) => {
-        (dispatch as Dispatch)(updateAnimeAction(response.data));
-      })
-      .catch((error) => {
-        return { errorCode: "400" };
-      });
+  (id: string, formData: Anime) => async (dispatch: Dispatch) => {
+    const data = new FormData();
+    data.append("image", formData.image);
+    data.append("name", formData.name);
+    data.append("autor", formData.autor);
+
+    const url = `${process.env.NEXT_PUBLIC_ANIME4ME}animes/${id}`;
+
+    const config = {
+      headers: { "content-type": "multipart/form-data" },
+    };
+    try {
+      const response = await axios.patch(url, data, config);
+      const test = dispatch(updateAnimeAction(response.data));
+      toastMessage(`${formData.name} is updated 👺`, "normal");
+      return test;
+    } catch (error) {
+      return { errorCode: "400" };
+    }
   };

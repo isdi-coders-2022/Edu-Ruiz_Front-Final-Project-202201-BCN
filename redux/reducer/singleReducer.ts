@@ -1,15 +1,7 @@
 import { HYDRATE } from "next-redux-wrapper";
 import actionsTypes from "../actions/actionsTypes";
 
-const singleAnimeReducer = (
-  currentAnime: any = {
-    name: "",
-    autor: "",
-    image: "",
-    id: "",
-  },
-  action: any = {}
-) => {
+const singleAnimeReducer = (currentAnime: any = {}, action: any = {}) => {
   let animeDetails;
 
   switch (action.type) {

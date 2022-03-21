@@ -3,7 +3,10 @@ import "react-toastify/dist/ReactToastify.css";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
-import { createAnimeThunk } from "../../redux/thunks/animeThunks";
+import {
+  createAnimeThunk,
+  updateAnimeThunk,
+} from "../../redux/thunks/animeThunks";
 import toastMessage from "../../utils/toastNotify";
 import Router from "next/router";
 
@@ -135,7 +138,7 @@ const FormContainer = styled.form`
   }
 `;
 
-const NewAnime = (): JSX.Element => {
+const NewAnime = ({ anime }: any): JSX.Element => {
   const dispatch = useDispatch();
 
   const blannkFields: any = {
@@ -148,7 +151,7 @@ const NewAnime = (): JSX.Element => {
     imageDefault: "",
   };
 
-  const [formData, setFormData] = useState(blannkFields);
+  const [formData, setFormData] = useState(anime ? anime : blannkFields);
   const [imgData, setImgData] = useState(imageUrl);
 
   const isInvalid =
@@ -162,6 +165,7 @@ const NewAnime = (): JSX.Element => {
     const imageFileData: any = event.target.files;
     setFormData({ ...formData, image: imageFileData[0] });
 
+    console.log("ANIME-reader");
     const reader = new FileReader();
     reader.onload = async () => {
       if (reader.readyState === 2) {
@@ -176,11 +180,22 @@ const NewAnime = (): JSX.Element => {
 
   const submitForm = async (event: React.ChangeEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const returnDispatch: any = await dispatch(createAnimeThunk(formData));
-    if (!returnDispatch.errorCode) {
-      Router.push("/");
+    if (anime) {
+      const returnDispatch: any = await dispatch(
+        updateAnimeThunk(formData.id as string, formData)
+      );
+      if (!returnDispatch.errorCode) {
+        Router.push("/");
+      } else {
+        toastMessage("this anime already exists 🙈", "error");
+      }
     } else {
-      toastMessage("this anime already exists 🙈", "error");
+      const returnDispatch: any = await dispatch(createAnimeThunk(formData));
+      if (!returnDispatch.errorCode) {
+        Router.push("/");
+      } else {
+        toastMessage("this anime already exists 🙈", "error");
+      }
     }
   };
 
@@ -195,7 +210,7 @@ const NewAnime = (): JSX.Element => {
         <ul>
           <li>
             <section>
-              <h1 className="title">New Anime</h1>
+              <h1 className="title">{anime ? "Update Anime" : "New Anime"}</h1>
               <img
                 src={imgData.imageDefault}
                 alt="image-preview"
@@ -214,6 +229,7 @@ const NewAnime = (): JSX.Element => {
               id="name"
               onChange={changeData}
               required
+              value={formData.name}
             />
           </li>
           <li>
@@ -226,6 +242,7 @@ const NewAnime = (): JSX.Element => {
               id="autor"
               onChange={changeData}
               required
+              value={formData.autor}
             />
           </li>
           <li>
@@ -248,7 +265,7 @@ const NewAnime = (): JSX.Element => {
               className={isInvalid ? "button" : "buttonActive"}
               disabled={isInvalid}
             >
-              Create Anime
+              {anime ? " Update Anime" : "Create Anime"}
             </button>
           </li>
         </ul>
