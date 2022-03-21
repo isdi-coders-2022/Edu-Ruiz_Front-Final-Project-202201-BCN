@@ -26,6 +26,7 @@
     "axios": "^0.26.1",
     "jwt-decode": "^3.1.2",
     "next": "12.1.0",
+    "next-pwa": "^5.4.6",
     "next-redux-wrapper": "^7.0.5",
     "nextjs-progressbar": "^0.0.14",
     "nprogress": "^0.2.0",
