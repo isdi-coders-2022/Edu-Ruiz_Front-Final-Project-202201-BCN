@@ -7,9 +7,9 @@ import {
 import actionsTypes from "../redux/actions/actionsTypes";
 import animeReducer from "../redux/reducer/animeReducer";
 
-describe("Given a cryptoReducer function", () => {
+describe("Given a animeReducer function", () => {
   describe("When it receives an action with an array of crytos", () => {
-    test("Then it should return a newCryptoState with the new array", () => {
+    test("Then it should return a NewAnimeReducer with the new array", () => {
       const newState: Animes = [
         {
           autor: "tupac",

@@ -18,7 +18,7 @@ describe("Given a Navigation component", () => {
 
 describe("when its rendered", () => {
   test("then it should be find the heading 'new review'", () => {
-    const inputedText = "hola buenos días";
+    const inputedText = "holabuenosdías";
 
     const WrappedComponent = wrapper.withRedux(NewAnime);
     render(<WrappedComponent />);
