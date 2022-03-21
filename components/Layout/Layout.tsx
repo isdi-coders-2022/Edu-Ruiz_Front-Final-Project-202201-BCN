@@ -7,11 +7,6 @@ const Layout: FunctionComponent = ({ children }) => {
     <>
       <Head key={"main-header"}>
         <title>A4ME</title>
-        <link rel="apple-touch-icon" href="/"></link>
-        <meta name="description" content="Anime4me Web page" />
-        <link rel="manifest" href="/manifest.json" />
-        <link rel="apple-touch-icon" href="/A4ME.png" />
-        <meta name="theme-color" content="#FF006A" />
       </Head>
       <Navigation />
       {children}
