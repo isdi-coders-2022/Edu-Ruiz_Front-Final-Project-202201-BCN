@@ -28,3 +28,18 @@ describe("when its rendered", () => {
     expect(input).toHaveValue(inputedText);
   });
 });
+
+describe("when its rendered", () => {
+  test("then it should be find the input contain a file", async () => {
+    const file: any = new File(["hello"], "hello.png", { type: "image/png" });
+
+    const WrappedComponent = wrapper.withRedux(NewAnime);
+    render(<WrappedComponent />);
+
+    const input = await screen.getByTitle("image-upload");
+
+    await userEvent.upload(input, file);
+
+    expect(input).not.toBeDisabled();
+  });
+});
