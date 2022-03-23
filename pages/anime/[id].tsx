@@ -21,9 +21,7 @@ export const getAllPostIds = async (context?: GetStaticPropsContext) => {
   const res = await fetch(`${process.env.NEXT_PUBLIC_ANIME4ME}animes/`, {
     method: "GET",
   });
-  debugger;
   const { animes } = await res.json();
-  debugger;
   return animes.map((post: any) => {
     return {
       params: {

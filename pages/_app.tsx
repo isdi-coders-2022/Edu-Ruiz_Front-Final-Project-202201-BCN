@@ -6,6 +6,7 @@ import { FC } from "react";
 import { wrapper } from "../redux/store";
 import { ToastContainer } from "react-toastify";
 import NextNProgress from "nextjs-progressbar";
+import "react-toastify/dist/ReactToastify.css";
 
 const WrappedApp: FC<AppProps> = ({ Component, pageProps }: AppProps) => {
   return (
