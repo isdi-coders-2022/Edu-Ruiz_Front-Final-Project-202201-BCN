@@ -5,7 +5,7 @@ import { wrapper } from "../redux/store";
 
 describe("Given a Navigation component", () => {
   describe("When it's rendered", () => {
-    test("Then it should show three anchors", () => {
+    test("Then it should show three anchors", async () => {
       const WrappedComponent = wrapper.withRedux(NewAnime);
       render(<WrappedComponent />);
 
@@ -17,7 +17,7 @@ describe("Given a Navigation component", () => {
 });
 
 describe("when its rendered", () => {
-  test("then it should be find the heading 'new review'", () => {
+  test("then it should be find the heading 'new review'", async () => {
     const inputedText = "holabuenosdías";
 
     const WrappedComponent = wrapper.withRedux(NewAnime);
@@ -25,6 +25,7 @@ describe("when its rendered", () => {
 
     const input = screen.getByRole("textbox", { name: /name/i });
     userEvent.type(input, inputedText);
+
     expect(input).toHaveValue(inputedText);
   });
 });
