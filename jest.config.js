@@ -19,11 +19,7 @@ const customJestConfig = {
     "**/*.ts",
     "!/*.config.js",
     "!pages/_app.tsx",
-
-    "!pages/login.tsx",
-    "!pages/my-anime.tsx",
-    "!pages/profile.tsx",
-
+    "!pages/_document.tsx",
     "!redux/**/index.ts",
     "!coverage/**/*",
     "!.next/**/*",
