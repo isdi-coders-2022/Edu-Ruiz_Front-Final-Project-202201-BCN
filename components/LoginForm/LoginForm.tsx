@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
@@ -74,6 +75,8 @@ const FormContainer = styled.form`
 `;
 
 const LoginForm = () => {
+  const router = useRouter();
+
   const dispatch = useDispatch();
   const initialFormData = {
     username: "",
@@ -90,13 +93,14 @@ const LoginForm = () => {
 
   const handleSubmit = (event: any) => {
     event.preventDefault();
-    dispatch(userThunk(formData));
+    dispatch(userThunk(formData, router));
   };
 
   const isFilled = formData.username !== "" && formData.password !== "";
 
   return (
     <FormContainer
+      data-testid="login-form"
       className="form-container"
       onSubmit={handleSubmit}
       autoComplete="off"

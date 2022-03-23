@@ -6,6 +6,7 @@ import {
 } from "../redux/actions/actionsCreator";
 import actionsTypes from "../redux/actions/actionsTypes";
 import animeReducer from "../redux/reducer/animeReducer";
+import { HYDRATE } from "next-redux-wrapper";
 
 describe("Given a animeReducer function", () => {
   describe("When it receives an action with an array of crytos", () => {
@@ -128,5 +129,27 @@ describe("When it gets 2 reviews and use deleteReviewAction with id 2", () => {
 
     expect(newReviews).toContain(expectedNewAnime);
     expect(newReviews).toHaveLength(expectedLength);
+  });
+});
+
+describe("When called HYDRATE case", () => {
+  test("Then should return the elements passed by HYDRATE payload", () => {
+    const animes = [
+      {
+        id: "2",
+        autor: "tupac",
+        image: "image.png",
+        name: "naruto",
+      },
+    ];
+
+    const action = {
+      type: HYDRATE,
+      payload: { animes: animes },
+    };
+
+    const newProduct = animeReducer([], action);
+
+    expect(newProduct).toEqual(animes);
   });
 });

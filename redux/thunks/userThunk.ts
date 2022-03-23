@@ -7,31 +7,32 @@ import {
   loginAction,
   registerAction,
 } from "../actions/actionsCreator";
-import Router from "next/router";
+import Router, { useRouter } from "next/router";
 import toastMessage from "../../utils/toastNotify";
 
-export const userThunk = (user: any) => async (dispatch: Dispatch) => {
-  const response = await fetch(
-    `${process.env.NEXT_PUBLIC_ANIME4ME}users/login`,
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(user),
-    }
-  );
+export const userThunk =
+  (user: any, router: any) => async (dispatch: Dispatch) => {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_ANIME4ME}users/login`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(user),
+      }
+    );
 
-  if (!response.ok) {
-    return toastMessage("The username or password is incorrect 🧨");
-  }
-  const token = await response.json();
-  const { username }: any = await jwtDecode(token.token);
-  localStorage.setItem("token", token.token);
-  dispatch(loginAction({ username, token: token.token }));
-  Router.push("/");
-  toastMessage("Logged in 😎");
-};
+    if (!response.ok) {
+      return toastMessage("The username or password is incorrect 🧨");
+    }
+    const token = await response.json();
+    const { username }: any = await jwtDecode(token.token);
+    localStorage.setItem("token", token.token);
+    dispatch(loginAction({ username, token: token.token }));
+    router.push("/");
+    toastMessage("Logged in 😎");
+  };
 
 export const registerThunk = (formData: any) => async (dispatch: Dispatch) => {
   const data = new FormData();
@@ -46,17 +47,15 @@ export const registerThunk = (formData: any) => async (dispatch: Dispatch) => {
     headers: { "content-type": "multipart/form-data" },
   };
 
-  axios
-    .post(url, data, config)
-    .then(() => {
-      dispatch(registerAction(data));
-      toastMessage("User Registered 😎");
-      Router.push("/login");
-    })
-    .catch((error) => {
-      toastMessage("This username alredy exist");
-      return { errorCode: "400" };
-    });
+  const response = await axios.post(url, data, config);
+  try {
+    dispatch(registerAction(response.data));
+    toastMessage("User Registered 😎");
+    Router.push("/login");
+  } catch (error) {
+    toastMessage("This username alredy exist");
+    return { errorCode: "400" };
+  }
 };
 
 export const loadUsersThunk = (token: any) => async (dispatch: Dispatch) => {
@@ -69,9 +68,9 @@ export const loadUsersThunk = (token: any) => async (dispatch: Dispatch) => {
     },
   };
 
-  axios.get(url, config).then((response) => {
-    dispatch(loadUsersAction(response.data.returnedUsers));
-  });
+  const response = await axios.get(url, config);
+
+  dispatch(loadUsersAction(response.data));
 };
 
 export const loadProfileThunk = (token: any) => async (dispatch: Dispatch) => {
@@ -84,7 +83,6 @@ export const loadProfileThunk = (token: any) => async (dispatch: Dispatch) => {
     },
   };
 
-  axios.get(url, config).then((response) => {
-    dispatch(loadProfileAction(response.data.actualUser));
-  });
+  const response = await axios.get(url, config);
+  dispatch(loadProfileAction(response.data.actualUser));
 };

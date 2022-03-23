@@ -35,6 +35,7 @@ const RegisterForm = () => {
 
   return (
     <FormContainer
+      data-testid="register-form"
       className="form-container"
       onSubmit={submitForm}
       autoComplete="off"
@@ -96,7 +97,12 @@ const RegisterForm = () => {
           />
         </li>
         <li>
-          <button type="submit" className="button" disabled={isInvalid}>
+          <button
+            type="submit"
+            title="button-signup"
+            className="button"
+            disabled={isInvalid}
+          >
             Sign Up
           </button>
           <p>

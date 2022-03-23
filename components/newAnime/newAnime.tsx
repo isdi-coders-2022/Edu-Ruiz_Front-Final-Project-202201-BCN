@@ -1,5 +1,4 @@
 /* eslint-disable @next/next/no-img-element */
-import "react-toastify/dist/ReactToastify.css";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
@@ -165,7 +164,6 @@ const NewAnime = ({ anime }: any): JSX.Element => {
     const imageFileData: any = event.target.files;
     setFormData({ ...formData, image: imageFileData[0] });
 
-    console.log("ANIME-reader");
     const reader = new FileReader();
     reader.onload = async () => {
       if (reader.readyState === 2) {
@@ -206,6 +204,7 @@ const NewAnime = ({ anime }: any): JSX.Element => {
         onSubmit={submitForm}
         autoComplete="off"
         noValidate
+        data-testid="newAnime-form"
       >
         <ul>
           <li>
