@@ -26,6 +26,7 @@ const customJestConfig = {
     "!**/*.test.tsx",
     "!setupTests.ts",
     "!mocks/*.ts",
+    "!cypress/integration/app-spec.ts",
   ],
 };
 
