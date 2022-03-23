@@ -132,7 +132,7 @@ const AnimeDetail = ({ animeDetail }: any): JSX.Element => {
 
   if (typeof window !== "undefined") {
     const token = localStorage.getItem("token");
-    token ?? Router.push("/login");
+    token ?? router.push("/login");
   }
 
   return (
