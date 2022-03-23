@@ -2,7 +2,6 @@ import { render, screen } from "@testing-library/react";
 import NewAnime from "../components/newAnime/newAnime";
 import userEvent from "@testing-library/user-event";
 import { wrapper } from "../redux/store";
-import { wait } from "@testing-library/user-event/dist/utils";
 
 describe("Given a Navigation component", () => {
   describe("When it's rendered", () => {
