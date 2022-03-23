@@ -2,6 +2,7 @@ import {
   createAnimeThunk,
   deleteAnimeThunk,
   loadAnimeListThunk,
+  updateAnimeThunk,
 } from "../redux/thunks/animeThunks";
 import "whatwg-fetch";
 import { server } from "../mocks/server";
@@ -74,8 +75,31 @@ describe("Given a createReviewThunk", () => {
   });
 });
 
-describe("Given a createReviewThunk", () => {
+describe("Given a updateAnimeThunk", () => {
   describe("When its invoked with a singleReview", () => {
+    test("Then it should dispatch a function", async () => {
+      const dispatch = jest.fn();
+      const UpdateAnime = {
+        id: "622cdb2eaa2f5a4e7dd16917",
+        autor: "tupac",
+        image: "image.png",
+        name: "naruto",
+      };
+
+      const idAnime = {
+        id: "622cdb2eaa2f5a4e7dd16917",
+      };
+      const createThunk = updateAnimeThunk(idAnime.id, UpdateAnime);
+
+      await createThunk(dispatch);
+
+      expect(dispatch).toHaveBeenCalled();
+    });
+  });
+});
+
+describe("Given a createReviewThunk", () => {
+  describe("When its invoked with a singleAnime", () => {
     test("Then it should dispatch a function", async () => {
       const dispatch = jest.fn();
 
